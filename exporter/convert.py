@@ -11,12 +11,6 @@ class PDict:
 			"Dfrom":start_from,
 			"days":[]
 		}
-		#self.name = name
-		#self.bio = bio
-		#self.Ptype = program_type
-		#self.length = length
-		#self.Dfrom = start_from
-		#self.days = []
 	@property
 	def name(self):
 		return self.output["name"]
