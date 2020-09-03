@@ -1,3 +1,5 @@
 {
-	"welcome_message":"#00A411"
+	"welcome_message":"#00A411",
+	"error":"#F00010",
+	"time":"#C80000"
 }
