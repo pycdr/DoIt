@@ -95,3 +95,5 @@ class PDict:
 				"time":[time_start, time_end]
 			})
 			return True
+	def get_json(self):
+		return self.output

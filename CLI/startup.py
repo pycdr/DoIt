@@ -1,9 +1,13 @@
 import	prompt_toolkit as ptk
-from	prompt_toolkit import HTML, print_formatted_text as print
-from	prompt_toolkit.styles import Style
+from	prompt_toolkit		import HTML, print_formatted_text as print
+from	prompt_toolkit.styles	import Style
+from	output_data		import output
 import	json
 import	argparse
-import	os
+import	os, sys
+
+sys.path.append("../")
+import	exporter
 
 style = Style.from_dict(json.loads(open("./style.json",'r').read()))
 
@@ -35,9 +39,11 @@ if args.list:
 print(HTML("<welcome_message>\
 welcome to the DoIt program!\
 </welcome_message>"),style=style)
+path = ""
 if args.path:
 	if os.path.isfile(args.path):
 		print("you set path as "+args.path)
+		path = args.path
 		if not args.path.endswith(".pckl"):
 			print(HTML(
 "<warn>the given path doesn't seem a pickle file\n\
@@ -47,6 +53,7 @@ we suggest you to save our data as pickle(.pckl) file, thanks!</warn>"),style=st
 		d = json.loads(open("./set_path.json", 'r').read())
 		if args.path in d:
 			print("you set path as "+d[args.path])
+			path = d[args.path]
 			if not d[args.path].endswith(".pckl"):
 				print(HTML(
 "<warn>the given path doesn't seem a pickle file\n\
@@ -55,3 +62,9 @@ we suggest you to save our data as pickle(.pckl) file, thanks!</warn>"),style=st
 		else:
 			print(HTML("<error>please give an existing pickle file path or saved name!</error>"),style=style)
 			exit()
+
+dt = exporter.pickle_to_dict(path)
+data = exporter.PDict("")
+data.output = dt
+
+output(data)

@@ -1,5 +1,5 @@
 from convert import PDict
-from exporter import dict_to_pickle
+from to_pickle import dict_to_pickle
 from pprint import pprint
 prg = PDict("example program","this is an example")
 for x in range(1,31):
