@@ -1,5 +1,8 @@
 {
 	"welcome_message":"#00A411",
 	"error":"#F00010",
-	"time":"#C80000"
+	"time":"#C80000",
+	"info":"#00AA00",
+	"schname":"#35A000",
+	"warn":"#AAAA00"
 }
