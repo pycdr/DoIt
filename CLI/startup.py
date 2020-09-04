@@ -62,9 +62,10 @@ we suggest you to save our data as pickle(.pckl) file, thanks!</warn>"),style=st
 		else:
 			print(HTML("<error>please give an existing pickle file path or saved name!</error>"),style=style)
 			exit()
-
+else:
+	print(HTML("<error>please give some Arguments!:|</error>"),style=style)
+	exit()
 dt = exporter.pickle_to_dict(path)
 data = exporter.PDict("")
 data.output = dt
-
 output(data)
