@@ -62,8 +62,8 @@ class PDict:
 					"hours":[]
 				})
 			self.set_day(number,**args)
-		if self.output["length"]>len(self.days):
-			self.output["length"]=len(self.days)
+		if self.output["length"]<len(self.output["days"]):
+			self.output["length"]=len(self.output["days"])
 			self.output["Ptype"]=""
 	def set_time(self,day_number,time_start,time_end,title="",color="",icon=""):
 		time_start = [int(x) for x in time_start.split(":")]
