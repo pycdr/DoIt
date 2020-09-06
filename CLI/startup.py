@@ -1,15 +1,9 @@
 import npyscreen as nps
+from Objects.OpenObjects import OpenForm
 
-class App(nps.NPSApp):
-	def main(self):
-		self.forms = [
-			nps.Form(name="open file"),
-			nps.Form(name="edit days"),
-			nps.Form(name="edit hours"),
-			nps.Form(name="edit hour")
-		]
-		# ...
-		self.forms[0].edit()
+class App(nps.NPSAppManaged):
+	def onStart(self):
+		self.registerForm("MAIN", OpenForm())
 
 if __name__=="__main__":
 	App().run()
