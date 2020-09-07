@@ -1,9 +1,12 @@
 import npyscreen as nps
 from Objects.OpenObjects import OpenForm
 
-class App(nps.NPSAppManaged):
+class App(nps.StandardApp): #or: nps.NPSAppManaged
 	def onStart(self):
-		self.registerForm("MAIN", OpenForm())
-
+		self.addForm("MAIN", OpenForm, name="open")
+		
 if __name__=="__main__":
-	App().run()
+	try:
+		App().run()
+	except KeyboardInterrupt:
+		print("Exit by pressing ^C")
