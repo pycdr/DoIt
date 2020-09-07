@@ -3,7 +3,10 @@ from Objects.OpenObjects import OpenForm
 
 class App(nps.StandardApp): #or: nps.NPSAppManaged
 	def onStart(self):
-		self.addForm("MAIN", OpenForm, name="open")
+		self.openform = self.addForm("MAIN", OpenForm)
+		self.daysform = None
+		self.dayform =  None
+		self.timeform = None
 		
 if __name__=="__main__":
 	try:

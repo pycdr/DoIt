@@ -1,58 +1,35 @@
 import npyscreen as nps
 import os
+import json
 
-class OpenForm(nps.Form): #or: nps.Form
+class RecentlyOpened(nps.BoxTitle):
 	def create(self):
-		y, x = self.useable_space()
+		self.values = [
+			"["+x.split(",")[1]+"]: "+x.split(",")[0]
+			for x in open("recently_opened",'r').read().split("\n")
+			if(not x=="")and(not x.isspace())
+		]
+
+class NamesPaths(nps.BoxTitle):
+	def create(self):
+		self.names_dict = json.load(open("set_path.json",'r'))
+		self.values = [
+			x+" : "+self.names_dict[x]
+			for x in self.names_dict
+		]
+
+class OpenForm(nps.FormBaseNew):
+	def create(self):
+		y,x = self.useable_space()
 		self.form1 = self.add(
-			RecentlyOpenedForm,
-			relx=0,
-			rely=0,
-			max_width=x//2-2,
-			max_height=(3*y)//4,
-			name="recently openeds"
+			RecentlyOpened, name="recently opened files",
+			relx=0, rely=0, 
+			max_width=x//2-1, max_height=(y)//2
 		)
+		self.form1.create()
 		self.form2 = self.add(
-			OpenByNameForm,
-			relx=x//2,
-			rely=0,
-			max_width=x//2-2,
-			max_height=(3*y)//4,
-			name="defined names"
+			NamesPaths, name="saved paths",
+			relx=x//2-1, rely=0,
+			max_width=x//2-1, max_height=(y)//2
 		)
-		self.form3 = self.add(
-			OpenByPathForm,
-			relx=0,
-			rely=(3*y)//4,
-			max_width=x-2,
-			max_height=y//4,
-			name = "input path"
-		)
-	def afterEditing(self):
-		self.parentApp.setNextForm(None)
-
-class RecentlyOpenedWidget(nps.TitleSelectOne):
-	value=[1,]
-	name="openeds"
-	values = [
-		"["+x.split(",")[1]+"]: "+x.split(",")[0] 
-		for x in open("recently_opened",'r').read().split("\n") 
-		if(not x=="")and(not x.isspace())
-	]
-	scroll_exit=True
-	#self._contained_widget = self.add(self.TitleSelectOne,)
-
-class RecentlyOpenedForm(nps.BoxTitle):
-	_contained_widget = RecentlyOpenedWidget
-
-class OpenByPathForm(nps.BoxTitle):
-	def create(self):
-		self.add(nps.OptionFreeText, name="path: ")
-	def afterEditing(self):
-		pass
-
-class OpenByNameForm(nps.BoxTitle):
-	def create(self):
-		pass
-	def afterEditing(self):
-		pass
+		self.form2.create()
