@@ -1,0 +1,33 @@
+{
+  "name": "DoIt",
+  "version": "1.0.0",
+  "description": "to program/schedule life.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pycdr/DoIt.git"
+  },
+  "keywords": [
+    "schedule",
+    "doit",
+    "program",
+    "time"
+  ],
+  "author": {
+    "name": "M.M.Tahmasbi",
+    "email": "pycdremail@gmail.com",
+    "url": "t.me/pycdr"
+  },
+  "license": "GPL-3.0+",
+  "bugs": {
+    "url": "https://github.com/pycdr/DoIt/issues"
+  },
+  "homepage": "https://github.com/pycdr/DoIt#readme",
+  "devDependencies": {
+    "electron": "^11.1.0"
+  }
+}
