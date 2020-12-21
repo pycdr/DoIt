@@ -1,0 +1,54 @@
+.button{
+	display: inline-flex;
+	height: 50vw;
+	width: 50vw;
+	border: 1vw solid #BFC0C0;
+	border-radius: 50%;
+	margin-top: 10%;
+	margin-left: calc(50% - 25vw);
+	color: #BFC0C0;
+	text-decoration: none;
+	font-size: 40vw;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+a{
+	color: #BFC0C0;
+	text-decoration: none;
+}
+#button-open {
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+#button-open a {
+	position: relative;
+	transition: all .45s ease-Out;
+}
+
+#circle {
+	width: 0%;
+	height: 0%;
+	opacity: 0;
+	line-height: 20vw;
+	border-radius: 50%;
+	background: #BFC0C0;
+	position: absolute;
+	transition: all .5s ease-Out;
+	top: 10vw;
+	left: 35vw;
+}
+
+#button-open:hover #circle {
+	width: 200%;
+	height: 500%;
+	opacity: 1;
+	top: -35vw;
+	left: -35vw;
+}
+
+#button-open:hover a {
+	color: #2D3142;
+}
