@@ -52,3 +52,7 @@ a{
 #button-open:hover a {
 	color: #2D3142;
 }
+
+input {
+	display: none;
+}

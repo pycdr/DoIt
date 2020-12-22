@@ -9,13 +9,33 @@ class MainPage extends React.Component{
 		this.state = {
 			path: ""
 		}
+		this.openDialog = this.openDialog.bind(this);
+		this.getPath = this.getPath.bind(this);
+		this.setPath = this.setPath.bind(this);
+	}
+	openDialog(){
+		this.file_input = document.getElementById("file-input");
+		this.file_input.click();
 	}
 	getPath(){
-		/* continue here */
+		if (this.file_input.files){
+			this.setState({path: this.file_input.files[0]});
+		}
+	}
+	setPath(path){
+		if (path) {
+			this.setState({path: path});
+		}
 	}
 	render() {
 		if (this.state.path === ""){
-			return <OpenButton open={this.getPath}></OpenButton>
+			return (
+				<OpenButton
+					open={this.openDialog}
+					get={this.getPath}
+					set={this.setPath}>
+				</OpenButton>
+			)
 		}
 		else {
 			return <Page file={this.state.path} />
