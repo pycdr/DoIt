@@ -1,5 +1,6 @@
 import React from "react";
 import scrjs from "scriptjs";
+import PageSelector from "./PageSelector.js";
 
 /* code from a forgotten stackoverflow link! */
 var parseXml;
@@ -20,7 +21,7 @@ if (window.DOMParser) {
 }
 /* end of code */
 
-var jsonOut = {};
+//var jsonOut = {};
 var xmlOut = "";
 
 
@@ -40,7 +41,6 @@ class XMLPager extends React.Component {
 				xmlOut = this.state.xmlContent;
 				let set = (o)=>{
 					this.setState({xmlContent: this.state.xmlContent, jsonContent: o});
-					console.log("after loader: ",this.state);
 				};
 				scrjs("https://goessner.net/download/prj/jsonxml/xml2json.js", () => {
 					let x = window.xml2json(parseXml(xmlOut),"");
@@ -52,8 +52,14 @@ class XMLPager extends React.Component {
 		scrjs("https://goessner.net/download/prj/jsonxml/json2xml.js", () => {});
 	}
 	render() {
-		console.log("from render: ",this.state.jsonContent);
-		return <p>keys: {JSON.stringify(this.state.jsonContent)}</p> // temporary
+		// json: this.state.jsonContent
+		// I don't know how, but it finally worked!
+		if (Object.keys(this.state.jsonContent).length===0){
+			return <></>
+		}
+		return (
+			<PageSelector data={this.state.jsonContent}/>
+		);
 	}
 }
 
