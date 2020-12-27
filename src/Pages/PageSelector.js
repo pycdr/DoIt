@@ -41,10 +41,11 @@ class PageSelector extends React.Component {
 			else if (!Array.isArray(this.data.time)) years = Array(this.data.time);
 			else times = this.data.time;
 			
-			console.log(years, months, days, times);
-			
 			return (
-				<Collapse accordion defaultActiveKey={["y"]}>
+				<Collapse accordion defaultActiveKey={["y","m","d","t"].find(x=>{
+					return {"y": years, "m": months, "d": days, "t": times}[x].length!==0
+				})}>
+					{Object.keys(years).length === 0?<></>:
 					<Panel header="Years" key="y"><Space wrap>
 						{years.map(x => (
 						<Card
@@ -82,8 +83,10 @@ class PageSelector extends React.Component {
 						</Card>
 						))}
 					</Space></Panel>
+					}
 					
 					
+					{Object.keys(months).length === 0?<></>:
 					<Panel header="Months" key="m"><Space wrap>
 						{months.map(x => (
 						<Card
@@ -121,8 +124,10 @@ class PageSelector extends React.Component {
 						</Card>
 						))}
 					</Space></Panel>
+					}
 					
 					
+					{Object.keys(days).length === 0?<></>:
 					<Panel header="Days" key="d"><Space wrap>
 						{days.map(x => (
 						<Card
@@ -158,11 +163,14 @@ class PageSelector extends React.Component {
 						</Card>
 						))}
 					</Space></Panel>
+					}
 					
 					
+					{Object.keys(times).length === 0?<></>:
 					<Panel header="Times" key="t">
 					
 					</Panel>
+					}
 				</Collapse>
 			)
 		}
