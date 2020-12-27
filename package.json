@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "antd": "^4.9.4",
     "child_process": "^1.0.2",
     "scriptjs": "^2.5.9",
     "xml-js": "^1.6.11",
