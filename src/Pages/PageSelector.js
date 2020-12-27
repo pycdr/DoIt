@@ -1,8 +1,5 @@
 import React from "react";
-/*import Year from "./YearPage.js";
-import Month from "./MonthPage.js";
-import Day from "./YearPage.js";
-import Time from "./TimePage.js";*/
+import ShowTimes from "./TimePage.js";
 import { Collapse, Card, Modal, Space, Image, Button } from "antd";
 import "antd/dist/antd.css";
 import { EyeOutlined } from "@ant-design/icons";
@@ -63,7 +60,7 @@ class PageSelector extends React.Component {
 							}
 						>
 							<Modal
-								title={"detail for year "+x["@number"]}
+								title={"details for year "+x["@number"]}
 								visible={this.state.y_visibility[x["@number"]]}
 								width="90vw"
 								onOk={()=>{
@@ -79,7 +76,7 @@ class PageSelector extends React.Component {
 								if (y[0]!=="@") return <PageSelector data={{month:x[y]}} />
 							})}
 							</Modal>
-							<Image src={x["@image"]} height="15vw"/>
+							<Image src={x["@image"]} height="20vw"/>
 						</Card>
 						))}
 					</Space></Panel>
@@ -104,7 +101,7 @@ class PageSelector extends React.Component {
 							}
 						>
 							<Modal
-								title={"detail for month "+x["@number"]}
+								title={"details for month "+x["@number"]}
 								visible={this.state.m_visibility[x["@number"]]}
 								width="80vw"
 								onOk={()=>{
@@ -120,7 +117,7 @@ class PageSelector extends React.Component {
 								if (y[0]!=="@") return <PageSelector data={{day:x[y]}} />
 							})}
 							</Modal>
-							<Image src={x["@image"]} height="15vw"/>
+							<Image src={x["@image"]} height="20vw"/>
 						</Card>
 						))}
 					</Space></Panel>
@@ -145,7 +142,7 @@ class PageSelector extends React.Component {
 							}
 						>
 							<Modal
-								title={"detail for day "+x["@number"]}
+								title={"details for day "+x["@number"]}
 								visible={this.state.d_visibility[x["@number"]]}
 								width="70vw"
 								onOk={()=>{
@@ -157,9 +154,9 @@ class PageSelector extends React.Component {
 									this.setState(this.state);
 								}}
 							>
-							{JSON.stringify(x)} //temporary
+							<ShowTimes data={x["time"]} />
 							</Modal>
-							<Image src={x["@image"]} height="15vw"/>
+							<Image src={x["@image"]} height="20vw"/>
 						</Card>
 						))}
 					</Space></Panel>
@@ -168,7 +165,7 @@ class PageSelector extends React.Component {
 					
 					{Object.keys(times).length === 0?<></>:
 					<Panel header="Times" key="t">
-					
+						<ShowTimes data={times} />
 					</Panel>
 					}
 				</Collapse>
