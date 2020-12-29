@@ -43,7 +43,6 @@ class ShowTimes extends React.Component {
 				"y": readtime(x["from"], x["to"])
 			});
 		});
-		console.log(this.pie_data);
 	}
 	render(){
 		return (<>
