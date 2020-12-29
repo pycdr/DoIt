@@ -1,7 +1,7 @@
 import React from "react";
 import ShowTimes from "./TimePage.js";
 import ShowMonths from "./MonthComp.js";
-import { Collapse, Card, Modal, Space, Image, Button } from "antd";
+import { Collapse, Card, Modal, Space, Image, Button, Skeleton } from "antd";
 import "antd/dist/antd.css";
 import { EyeOutlined } from "@ant-design/icons";
 const { Panel } = Collapse;
@@ -12,7 +12,6 @@ class PageSelector extends React.Component {
 		this.data = props.data;
 		this.state = {
 			y_visibility : {},
-			//m_visibility : {},
 			d_visibility : {},
 			t_visibility : {}
 		}
@@ -77,7 +76,11 @@ class PageSelector extends React.Component {
 								if (y[0]!=="@") return <PageSelector data={{month:x[y]}} />
 							})}
 							</Modal>
+							{x["@image"]==undefined?(
+							<Skeleton.Image />
+							):(
 							<Image src={x["@image"]} height="20vw"/>
+							)}
 						</Card>
 						))}
 					</Space></Panel>
@@ -123,7 +126,11 @@ class PageSelector extends React.Component {
 							>
 							<ShowTimes data={x["time"]} />
 							</Modal>
+							{x["@image"]==undefined?(
+							<Skeleton.Image />
+							):(
 							<Image src={x["@image"]} height="20vw"/>
+							)}
 						</Card>
 						))}
 					</Space></Panel>
