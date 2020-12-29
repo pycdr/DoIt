@@ -2,6 +2,7 @@ import React from "react";
 import { Space, Row, Col, Modal, Collapse, Card, Button, Image, Skeleton } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import PageSelector from "./PageSelector.js";
+import Calendar from "./DayCalendar.js";
 const { Panel } = Collapse;
 
 class Months extends React.Component {
@@ -14,7 +15,6 @@ class Months extends React.Component {
 			this.state[Number(x["@number"])]=false;
 			this.readyMonths[Number(x["@number"])] = x
 		});
-		console.log(this.readyMonths);
 	}
 	render(){
 		return (
@@ -51,9 +51,7 @@ class Months extends React.Component {
 									this.setState(this.state);
 								}}
 							>
-							{Object.keys(this.readyMonths[y]).map(z => {
-								if (z[0]!=="@") return <PageSelector data={{day:this.readyMonths[y][z]}} />
-							})}
+							<Calendar mdata={this.readyMonths[y]}/>
 							</Modal>
 							{this.readyMonths[y]["@image"]==undefined?(
 							<Skeleton.Image />
