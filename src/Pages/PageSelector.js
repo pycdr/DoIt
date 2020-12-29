@@ -1,5 +1,6 @@
 import React from "react";
 import ShowTimes from "./TimePage.js";
+import ShowMonths from "./MonthComp.js";
 import { Collapse, Card, Modal, Space, Image, Button } from "antd";
 import "antd/dist/antd.css";
 import { EyeOutlined } from "@ant-design/icons";
@@ -11,7 +12,7 @@ class PageSelector extends React.Component {
 		this.data = props.data;
 		this.state = {
 			y_visibility : {},
-			m_visibility : {},
+			//m_visibility : {},
 			d_visibility : {},
 			t_visibility : {}
 		}
@@ -84,43 +85,9 @@ class PageSelector extends React.Component {
 					
 					
 					{Object.keys(months).length === 0?<></>:
-					<Panel header="Months" key="m"><Space wrap>
-						{months.map(x => (
-						<Card
-							title={x["@number"]}
-							extra={
-							<Button
-								icon={<EyeOutlined />}
-								onClick={()=>{
-									this.state.m_visibility[x["@number"]] = true;
-									this.setState(this.state);
-								}}
-								>
-								show
-							</Button>
-							}
-						>
-							<Modal
-								title={"details for month "+x["@number"]}
-								visible={this.state.m_visibility[x["@number"]]}
-								width="80vw"
-								onOk={()=>{
-									this.state.m_visibility[x["@number"]] = false;
-									this.setState(this.state);
-								}}
-								onCancel={()=>{
-									this.state.m_visibility[x["@number"]] = false;
-									this.setState(this.state);
-								}}
-							>
-							{Object.keys(x).map(y => {
-								if (y[0]!=="@") return <PageSelector data={{day:x[y]}} />
-							})}
-							</Modal>
-							<Image src={x["@image"]} height="20vw"/>
-						</Card>
-						))}
-					</Space></Panel>
+					<Panel header="Months" key="m">
+						<ShowMonths data={months} />
+					</Panel>
 					}
 					
 					
