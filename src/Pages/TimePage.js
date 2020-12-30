@@ -1,5 +1,5 @@
 import React from "react";
-import { Steps, Button } from "antd";
+import { Steps, Button, Timeline, message } from "antd";
 import { Pie } from 'ant-design-pro/lib/Charts';
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
 const { Step } = Steps;
@@ -45,6 +45,7 @@ class ShowTimes extends React.Component {
 		});
 	}
 	render(){
+		let i = 0;
 		return (<>
 			<Steps current={this.state.step}>
 				{this.data.map(x=>(
@@ -67,11 +68,15 @@ class ShowTimes extends React.Component {
 				>previous</Button>
 				<Button
 					onClick = {()=>{
+						if (this.data.length - this.state.step === 1) {
+							message.success("tasks completely done")
+						}
 						this.setState({
 							step: (
 								this.data.length + this.state.step+1
 							)%this.data.length})
-					}}
+						}
+					}
 					icon = {<CaretRightOutlined />}
 				>next</Button>
 			</>)}
@@ -82,14 +87,27 @@ class ShowTimes extends React.Component {
 				total = {() => (
 					<span
 						dangerouslySetInnerHTML={{
-							__html: "total: " + showtime(this.pie_data.reduce((pre, now) => pre.y + now.y))
+							__html: "total: " + showtime(
+								this.pie_data.reduce((pre, now) => pre.y + now.y)
+							)
 						}}
 					/>
 				)}
 				data = {this.pie_data}
-				valueFormat = {val => <><br /><span dangerouslySetInnerHTML={{ __html: showtime(val) }} /></>}
+				valueFormat = {val => <><br /><span dangerouslySetInnerHTML={{
+					__html: showtime(val)
+				}} /></>}
 				height = {400}
 	  		/>
+	  		<Timeline>
+	  			{this.data.map(x => (
+	  				<Timeline.Item
+	  					color={this.state.step >= ++i ? "green" : "red"}
+	  				>
+	  					{x.title}: {x.text}
+	  				</Timeline.Item>
+	  			))}
+	  		</Timeline>
 		</>)
 		
 	}
