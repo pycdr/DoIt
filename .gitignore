@@ -1,4 +1,4 @@
-convertor/example*
+examples/
 node_modules/
 .buildconfig
 .eslintcache
