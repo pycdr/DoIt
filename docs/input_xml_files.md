@@ -59,11 +59,28 @@ there are 3 defined arguments:
 </day>
 ```
 ### `<time>`
+this tag defines the proccesses of a day, and has these elements:
 #### `<from>`
+just a text, like `<from>12:30</from>`. it may be **HH**, **HH:MM** or **HH:MM:SS**.
 #### `<to>`
+like `<from>` element, but defines the end time.
 #### `<title>`
+defines the title of the proccess.
 #### `<description>`
+a short desctiption of the proccess.
 #### `<text>`
+full description of the proccess.
+
+example:
+```xml
+<time>
+	<from>12</from>
+	<to>13:29:47</to>
+	<title>Example</title>
+	<description>this is an example.</description>
+	<text>this is a long description of the proccess.</text>
+</time>
+```
 
 ## note
 * all of arguments should be given as string, including number. like `<year number="2020">`
